@@ -96,14 +96,14 @@ pub(crate) fn make_random_change_raw(oplog: &mut OpLog, branch: &Branch, mut rop
     v
 }
 
-pub(crate) fn make_random_change(doc: &mut ListCRDT, rope: Option<&mut JumpRope>, agent: AgentId, rng: &mut SmallRng) {
+pub fn make_random_change(doc: &mut ListCRDT, rope: Option<&mut JumpRope>, agent: AgentId, rng: &mut SmallRng) {
     let v = make_random_change_raw(&mut doc.oplog, &doc.branch, rope, agent, rng);
     doc.branch.merge(&doc.oplog, &[v]);
     // doc.check(true);
     // doc.check(false);
 }
 
-pub(crate) fn choose_2<'a, T>(arr: &'a mut [T], rng: &mut SmallRng) -> (usize, &'a mut T, usize, &'a mut T) {
+pub fn choose_2<'a, T>(arr: &'a mut [T], rng: &mut SmallRng) -> (usize, &'a mut T, usize, &'a mut T) {
     loop {
         // Then merge 2 branches at random
         let a_idx = rng.gen_range(0..arr.len());
