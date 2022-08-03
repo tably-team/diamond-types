@@ -29,8 +29,7 @@ mod internal_op;
 mod eq;
 mod oplog_merge;
 
-#[cfg(test)]
-mod fuzzer_tools;
+pub mod fuzzer_tools;
 #[cfg(test)]
 mod oplog_merge_fuzzer;
 
@@ -76,7 +75,7 @@ pub struct Branch {
     version: LocalVersion,
 
     /// The document's content.
-    content: JumpRope,
+    pub content: JumpRope,
 }
 
 /// An OpLog is a collection of Diamond Types operations, stored in a super fancy compact way. Each
@@ -144,7 +143,7 @@ pub struct OpLog {
     /// This is only stored as a convenience - we could recalculate it as needed from history when
     /// needed, but thats a hassle. And it takes up very little space, and its very convenient to
     /// have on hand! So here it is.
-    version: LocalVersion,
+    pub version: LocalVersion,
 }
 
 /// This is a simple helper structure which wraps an [`OpLog`](OpLog) and [`Branch`](Branch)
