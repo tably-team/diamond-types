@@ -128,7 +128,7 @@ pub struct OpLog {
     /// order). This object is indexed by the operation set.
     operation_ctx: OperationCtx,
     // TODO: Replace me with a compact form of this data.
-    operations: RleVec<KVPair<OperationInternal>>,
+    pub operations: RleVec<KVPair<OperationInternal>>,
 
     /// Transaction metadata (succeeds, parents) for all operations on this document. This is used
     /// for `diff` and `branchContainsVersion` calls on the document, which is necessary to merge

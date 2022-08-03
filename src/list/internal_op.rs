@@ -17,7 +17,7 @@ use crate::unicount::chars_to_bytes;
 ///
 /// Note that OperationInternal can't directly implement
 #[derive(Debug, Clone, Eq, PartialEq)]
-pub(crate) struct OperationInternal {
+pub struct OperationInternal {
     /// The span of content which is inserted or deleted.
     ///
     /// For inserts, this describes the resulting location (span) of the new characters.
@@ -54,7 +54,7 @@ impl OperationInternal {
         })
     }
 
-    pub(crate) fn to_operation(&self, oplog: &OpLog) -> Operation {
+    pub fn to_operation(&self, oplog: &OpLog) -> Operation {
         let content = self.get_content(oplog);
         (self, content).into()
     }
@@ -67,7 +67,7 @@ impl HasLength for OperationInternal {
 }
 
 #[derive(Debug, Clone)]
-pub(crate) struct OperationCtx {
+pub struct OperationCtx {
     pub(crate) ins_content: Vec<u8>,
     pub(crate) del_content: Vec<u8>,
 }
